@@ -1,10 +1,10 @@
-# Default values for k8sbackend.
+# Default values for anchorplatform.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-fullnameOverride: k8sbackend
+fullnameOverride: anchorplatform
 replicaCount: 1
 image:
-  repository: k8sbackend
+  repository: anchorplatform
   tag: stable
   pullPolicy: IfNotPresent
 imagePullSecrets: []
