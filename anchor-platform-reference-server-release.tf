@@ -10,9 +10,9 @@ provider "helm" {
   }
 }
 
-resource "helm_release" "prometheus" {
+resource "helm_release" "reference-server" {
   name             = "reference-server"
-  chart            = "kube-prometheus-stack"
+  chart            = "reference-server"
   repository       = "./anchor-platform-charts"
   namespace        = "monitoring"
   version          = "17.1.3"
