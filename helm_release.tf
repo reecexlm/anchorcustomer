@@ -20,5 +20,4 @@ resource "helm_release" "prometheus" {
   wait             = true
   reset_values     = true
   max_history      = 3
-  timeout          = 1500
 }
