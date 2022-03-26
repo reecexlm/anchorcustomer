@@ -24,35 +24,42 @@ module "eks" {
       instance_type                 = "t2.micro"
       additional_userdata           = "echo foo bar"
       additional_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
-      asg_desired_capacity          = 3
+      asg_desired_capacity          = 2
     },
     {
       name                          = "worker-group-3"
       instance_type                 = "t2.micro"
       additional_userdata           = "echo foo bar"
       additional_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
-      asg_desired_capacity          = 3
+      asg_desired_capacity          = 2
     },
     {
       name                          = "worker-group-4"
       instance_type                 = "t2.micro"
       additional_userdata           = "echo foo bar"
       additional_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
-      asg_desired_capacity          = 3
+      asg_desired_capacity          = 2
     },
     {
       name                          = "worker-group-5"
       instance_type                 = "t2.micro"
       additional_userdata           = "echo foo bar"
       additional_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
-      asg_desired_capacity          = 3
+      asg_desired_capacity          = 2
     },
     {
       name                          = "worker-group-6"
       instance_type                 = "t2.micro"
       additional_userdata           = "echo foo bar"
       additional_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
-      asg_desired_capacity          = 3
+      asg_desired_capacity          = 2
+    },
+    {
+      name                          = "worker-group-7"
+      instance_type                 = "t2.micro"
+      additional_userdata           = "echo foo bar"
+      additional_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
+      asg_desired_capacity          = 2
     },
   ]
 
