@@ -6,7 +6,6 @@ metadata:
   labels:
     app: anchor-platform-reference-server-preview-id
   annotations:
-    fluxcd.io/automated: "true"
     reloader.stakater.com/auto: "true"
 spec:
   replicas: 1
@@ -20,7 +19,7 @@ spec:
     spec:
       containers:
       - name: reference-server
-        image: docker-registry.services.stellar-ops.com/dev/anchor-platform:preview-id
+        image: stellar/anchor-platform
         args: ["--anchor-reference-server"]
         imagePullPolicy: Always
         ports:
