@@ -11,8 +11,6 @@ spec:
   - protocol: TCP
     port: 8081       # port number the service will listen on
     targetPort: 8081 # port number pods listen on
-  selector:
-    app: anchor-platform-reference-server-preview-id
 ---
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
