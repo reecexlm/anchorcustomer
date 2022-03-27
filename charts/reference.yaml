@@ -14,10 +14,11 @@ spec:
     metadata:
       labels:
         app: reference
+        otherlabel: eference
     spec:
       containers:
       - name: refserver
-        image: stellar/anchor-platform
+        image: stellar/anchor-platform:e0a7d02
         args: ["--anchor-reference-server"]
         imagePullPolicy: Always
         ports:
@@ -29,5 +30,4 @@ spec:
       volumes:
       - name: config-volume
         configMap:
-          name: anchor-platform-reference-server-config
-          
+          name: anchor-ref-config
