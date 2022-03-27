@@ -1,19 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: anchor-platform-reference-server-preview-id
+  name: reference-server
   namespace: anchor-platform
   labels:
-    app: anchor-platform-reference-server-preview-id
+    app: reference-server
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: reference
   template:
     metadata:
       labels:
-        app: anchor-platform-reference-server-preview-id
+        app: reference
     spec:
       containers:
-      - name: reference-server
+      - name: refserver
         image: stellar/anchor-platform
         args: ["--anchor-reference-server"]
         imagePullPolicy: Always
@@ -26,5 +29,5 @@ spec:
       volumes:
       - name: config-volume
         configMap:
-          name: anchor-platform-reference-server-config-preview-id
+          name: anchor-platform-reference-server-config
           

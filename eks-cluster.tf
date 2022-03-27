@@ -41,7 +41,7 @@ module "eks" {
       asg_desired_capacity          = 2
       tags = [{
           key                 = "app"
-          value               = "anchor-platform-reference-server-preview-id"
+          value               = "reference"
           propagate_at_launch = true
       }]
     },
