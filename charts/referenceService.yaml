@@ -2,9 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: anchor-platform-reference-server-preview-id
-  namespace: common-previews
-  annotations:
-    fluxcd.io/ignore: "true"  # Manifests only used for PR previews
+  namespace: anchor-platform
 spec:
   type: ClusterIP
   ports:
@@ -16,7 +14,7 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: anchor-platform-reference-server-preview-id
-  namespace: common-previews
+  namespace: anchor-platform
   annotations:
     kubernetes.io/ingress.class: "public"
     cert-manager.io/cluster-issuer: "default"
@@ -26,8 +24,6 @@ metadata:
     ingress.kubernetes.io/content-type-nosniff: "true"
     ingress.kubernetes.io/hsts-max-age: "31536000"
     ingress.kubernetes.io/hsts-include-subdomains: "true"
-    fluxcd.io/ignore: "true"  # Manifests only used for PR previews
-
 spec:
   tls:
   - secretName: star.previews.kube001.services.stellar-ops.com.tls

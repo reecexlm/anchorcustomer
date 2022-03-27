@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: anchor-platform-sep-server-config-preview-id
-  namespace: common-previews
+  namespace: anchor-platform
   annotations:
     fluxcd.io/ignore: "true"  # Manifests only used for PR previews
 data:
