@@ -1,0 +1,129 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: anchor-platform-sep-server-config-preview-id
+  namespace: common-previews
+  annotations:
+    fluxcd.io/ignore: "true"  # Manifests only used for PR previews
+data:
+  # TODO: remove all secrets (ex: move to env vars, k8s secrets, vault, etc...)
+  anchor-config.yaml: |
+    stellar:
+      anchor:
+        # Configure the application from this file after it is loaded in memory
+        # If `config` is in-memory, the yaml file contains all settings for the server.
+        config: in-memory
+        app-config:
+          type: config-spring-property                # Activate [config-spring-property] module
+          settings: app-config                        # The location of the configuration data
+        data-access:
+          type: data-spring-jdbc                      # Activate [config-spring-jdbc] module.
+          settings: data-spring-jdbc-sqlite           # The location of the configuration data in this file.
+        logging:
+          type: logging-logback
+          settings: logging-logback-settings
+    #
+    # Application settings
+    #
+    app-config:
+      # general
+      app:
+        stellarNetworkPassphrase: Test SDF Network ; September 2015
+        hostUrl: https://anchor-sep-preview-id.previews.kube001.services.stellar-ops.com
+        languages: en
+        horizonUrl: https://horizon-testnet.stellar.org
+        assets: assets-test.json
+        jwtSecretKey: secret
+    
+      # sep-1
+      sep1:
+        enabled: true
+        stellarFile: file:/config/stellar-wks.toml
+      # sep-10
+      sep10:
+        enabled: true
+        homeDomain: anchor-sep-preview-id.previews.kube001.services.stellar-ops.com
+        clientAttributionRequired: false
+        clientAttributionAllowList: lobstr.co,preview.lobstr.co # use this if we want to white list
+        # clientAttributionDenyList: # use this if we want to black list.
+        authTimeout: 900
+        jwtTimeout: 86400
+        signingSeed: SBTBRGMPWNLXOZQQQXXZRJKCZPYTAZT5FC4VEAECF2HOBCONTSH4EXKS
+      # sep-12
+      sep12:
+        enabled: true
+        customerIntegrationEndpoint: https://anchor-ref-preview-id.previews.kube001.services.stellar-ops.com
+      # sep-38
+      sep38:
+        enabled: true
+        quoteIntegrationEndPoint: localhost:8082
+      payment-gateway:
+        #
+        # Payment Circle configurations
+        #
+        circle:
+          name: "circle"
+          enabled: true
+          circleUrl: https://api-sandbox.circle.com
+          secretKey: secret
+          horizonUrl: https://horizon-testnet.stellar.org
+          stellarNetwork: TESTNET
+        #
+        # Payment Stellar configurations
+        #
+        stellar:
+          enabled: false
+          name: "stellar"
+          horizon_url: https://horizon-testnet.stellar.org
+          secretKey: secret
+    #
+    # Spring Data JDBC settings
+    #
+    data-spring-jdbc-sqlite:
+      spring.jpa.database-platform: org.stellar.anchor.server.sqlite.SQLiteDialect
+      spring.jpa.hibernate.ddl-auto: update
+      spring.jpa.generate-ddl: true
+      spring.jpa.hibernate.show_sql: false
+      spring.datasource.url: jdbc:sqlite:anchor-proxy.db
+      spring.datasource.driver-class-name: org.sqlite.JDBC
+      spring.datasource.username: admin
+      spring.datasource.password: admin
+    data-spring-jdbc-h2:
+      spring.datasource.url: jdbc:h2:mem:test
+      spring.jpa.properties.hibernate.dialect: org.hibernate.dialect.H2Dialect
+    #
+    # Spring framework configurations
+    #
+    spring:
+      logging:
+        level:
+          root: INFO
+          org.springframework: INFO
+          org.springframework.web.filter: INFO
+          org.stellar: INFO
+      mvc:
+        async.request-timeout: 6000
+  stellar-wks.toml: |
+    ACCOUNTS = ["GDZCLP2PHTWYQ3BWZMC5D4ZUJX5NU4S7YZHC5EBFAFKL6UJUQ5RKDGSY"]
+    VERSION = "0.1.0"
+    NETWORK_PASSPHRASE = "Test SDF Network ; September 2015"
+    SIGNING_KEY = "GDZCLP2PHTWYQ3BWZMC5D4ZUJX5NU4S7YZHC5EBFAFKL6UJUQ5RKDGSY"
+    TRANSFER_SERVER = "https://anchor-sep-preview-id.previews.kube001.services.stellar-ops.com/sep6"
+    TRANSFER_SERVER_SEP0024 = "https://anchor-sep-preview-id.previews.kube001.services.stellar-ops.com/sep24"
+    WEB_AUTH_ENDPOINT = "https://anchor-sep-preview-id.previews.kube001.services.stellar-ops.com/auth"
+    KYC_SERVER = "https://anchor-sep-preview-id.previews.kube001.services.stellar-ops.com/sep12"
+    DIRECT_PAYMENT_SERVER = "https://anchor-sep-preview-id.previews.kube001.services.stellar-ops.com/sep31"
+    QUOTE_SERVER = "https://anchor-sep-preview-id.previews.kube001.services.stellar-ops.com/sep38"
+    [[CURRENCIES]]
+    code = "USDC"
+    issuer = "GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5"
+    status = "test"
+    is_asset_anchored = true
+    anchor_asset_type = "fiat"
+    desc = "A test USDC issued by Circle."
+    [DOCUMENTATION]
+    ORG_NAME = "Stellar Development Foundation"
+    ORG_URL = "https://www.stellar.org"
+    ORG_DESCRIPTION = "Stellar is an open network for storing and moving money."
+    ORG_LOGO="https://assets-global.website-files.com/5deac75ecad2173c2ccccbc7/5dec8960504967fd31147f62_Stellar_lockup_black_RGB.svg"
+    ORG_SUPPORT_EMAIL="jamie@stellar.org"

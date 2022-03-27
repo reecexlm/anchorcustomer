@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: anchor-platform-reference-server-preview-id
+  namespace: common-previews
+  annotations:
+    fluxcd.io/ignore: "true"  # Manifests only used for PR previews
+spec:
+  type: ClusterIP
+  ports:
+  - protocol: TCP
+    port: 8081       # port number the service will listen on
+    targetPort: 8081 # port number pods listen on
+  selector:
+    app: anchor-platform-reference-server-preview-id
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: anchor-platform-reference-server-preview-id
+  namespace: common-previews
+  annotations:
+    kubernetes.io/ingress.class: "public"
+    cert-manager.io/cluster-issuer: "default"
+    ingress.kubernetes.io/ssl-redirect: "true"
+    ingress.kubernetes.io/browser-xss-filter: "true"
+    ingress.kubernetes.io/frame-deny: "true"
+    ingress.kubernetes.io/content-type-nosniff: "true"
+    ingress.kubernetes.io/hsts-max-age: "31536000"
+    ingress.kubernetes.io/hsts-include-subdomains: "true"
+    fluxcd.io/ignore: "true"  # Manifests only used for PR previews
+
+spec:
+  tls:
+  - secretName: star.previews.kube001.services.stellar-ops.com.tls
+  rules:
+  - host: anchor-ref-preview-id.previews.kube001.services.stellar-ops.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: anchor-platform-reference-server-preview-id
+          servicePort: 8081
