@@ -14,7 +14,7 @@ resource "helm_release" "reference-server" {
   name             = "reference-server"
   chart            = "reference-server"
   repository       = "./anchor-platform-charts"
-  namespace        = "monitoring"
+  namespace        = "anchorplatform"
   version          = "17.1.3"
   create_namespace = true
   wait             = true
