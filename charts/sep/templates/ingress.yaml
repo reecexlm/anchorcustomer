@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: anchor-platform-sep-server
-  namespace: anchor-platform-dev
+  namespace: anchor-platform
   annotations:
     kubernetes.io/ingress.class: "public"
     cert-manager.io/cluster-issuer: "default"
