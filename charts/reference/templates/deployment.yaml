@@ -9,7 +9,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: reference
+      app: anchor-platform-reference-server-preview-id
   template:
     metadata:
       labels:
