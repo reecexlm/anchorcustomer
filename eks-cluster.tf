@@ -32,6 +32,11 @@ module "eks" {
       additional_userdata           = "echo foo bar"
       additional_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
       asg_desired_capacity          = 2
+      tags = [{
+          key                 = "app"
+          value               = "sep"
+          propagate_at_launch = true
+      }]
     },
     {
       name                          = "worker-group-4"
