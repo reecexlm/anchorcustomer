@@ -10,9 +10,9 @@ provider "helm" {
   }
 }
 
-resource "helm_release" "reference" {
-  name             = "reference-server"
-  chart            = "./charts/reference"
+resource "helm_release" "sep" {
+  name             = "sep-server"
+  chart            = "./charts/sep"
   namespace        = "anchor-platform"
   version          = "17.1.3"
   create_namespace = true
@@ -22,7 +22,7 @@ resource "helm_release" "reference" {
   timeout          = 600
 
     values = [
-    file("${path.module}/anchor-platform-reference-server-values.yaml")
+    file("${path.module}/anchor-platform-sep-server-values.yaml")
   ]
 }
 
