@@ -4,7 +4,7 @@ metadata:
   name: anchor-platform-sep-server
   namespace: anchor-platform
   labels:
-    app: anchor-platform-sep-server
+    app: sep
 spec:
   replicas: 1
   selector:
