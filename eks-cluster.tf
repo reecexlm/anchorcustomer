@@ -11,14 +11,14 @@ module "eks" {
     root_volume_type = "gp2"
   }
 
-    eks_managed_node_group_defaults = {
+    node_group_defaults = {
     ami_type               = "AL2_x86_64"
     disk_size              = 50
     instance_types         = ["t2.micro"]
     vpc_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
   }
 
-  eks_managed_node_groups = {
+  node_groups = {
     reference = {
       min_size     = 1
       max_size     = 2
