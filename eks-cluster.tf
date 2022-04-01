@@ -11,27 +11,62 @@ module "eks" {
     root_volume_type = "gp2"
   }
 
-  worker_groups = [
-    {
-      name                          = "worker-group-1"
-      instance_type                 = "t2.micro"
-      additional_userdata           = "echo foo bar"
-      additional_security_group_ids = [aws_security_group.worker_group_mgmt_one.id]
-      asg_desired_capacity          = 2
-    },
-    {
-      name                          = "worker-group-2"
-      instance_type                 = "t2.micro"
-      additional_userdata           = "echo foo bar"
-      additional_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
-      asg_desired_capacity          = 2
-    },
-    {
+    eks_managed_node_group_defaults = {
+    ami_type               = "AL2_x86_64"
+    disk_size              = 50
+    instance_types         = ["t2.micro"]
+    vpc_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
+  }
+
+  eks_managed_node_groups = {
+    reference = {
+      min_size     = 1
+      max_size     = 2
+      desired_size = 1
+
+      capacity_type  = "SPOT"
+      labels = {
+        app = "anchor-platform-reference-server-preview-id"
+      }
+      taints = {
+        dedicated = {
+          key    = "dedicated"
+          value  = "gpuGroup"
+          effect = "NO_SCHEDULE"
+        }
+      }
+      tags = {
+        ExtraTag = "anchor-platform-reference-server-preview-id"
+      }
+    }
+    sep = {
+      min_size     = 1
+      max_size     = 2
+      desired_size = 1
+
+      capacity_type  = "SPOT"
+      labels = {
+        app = "sep"
+      }
+      taints = {
+        dedicated = {
+          key    = "dedicated"
+          value  = "gpuGroup"
+          effect = "NO_SCHEDULE"
+        }
+      }
+      tags = {
+        ExtraTag = "sep"
+      }
+    }
+  }
+
+      {
       name                          = "worker-group-3"
       instance_type                 = "t2.micro"
       additional_userdata           = "echo foo bar"
       additional_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
-      asg_desired_capacity          = 2
+      asg_desired_capacity          = 1
       tags = [{
           key                 = "app"
           value               = "sep"
@@ -49,6 +84,21 @@ module "eks" {
           value               = "reference"
           propagate_at_launch = true
       }]
+
+  worker_groups = [
+    {
+      name                          = "worker-group-1"
+      instance_type                 = "t2.micro"
+      additional_userdata           = "echo foo bar"
+      additional_security_group_ids = [aws_security_group.worker_group_mgmt_one.id]
+      asg_desired_capacity          = 1
+    },
+    {
+      name                          = "worker-group-2"
+      instance_type                 = "t2.micro"
+      additional_userdata           = "echo foo bar"
+      additional_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
+      asg_desired_capacity          = 1
     },
   ]
 
