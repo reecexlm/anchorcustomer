@@ -23,7 +23,7 @@ resource "helm_release" "reference" {
 }
 
 resource "helm_release" "sep" {
-  name             = "reference-server"
+  name             = "sep-server"
   chart            = "./charts/sep"
   namespace        = "anchor-platform"
   version          = "17.1.3"
