@@ -1,0 +1,6 @@
+fullName: anchor-ref-config
+jwtSecretKey:
+signingSeed: 
+stellar:
+   secretKey:
+

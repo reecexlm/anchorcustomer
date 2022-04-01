@@ -10,9 +10,21 @@ provider "helm" {
   }
 }
 
-resource "helm_release" "reference-server" {
+resource "helm_release" "reference" {
   name             = "reference-server"
-  chart            = "./charts"
+  chart            = "./charts/reference"
+  namespace        = "anchor-platform"
+  version          = "17.1.3"
+  create_namespace = true
+  wait             = true
+  reset_values     = true
+  max_history      = 3
+  timeout          = 600
+}
+
+resource "helm_release" "sep" {
+  name             = "reference-server"
+  chart            = "./charts/sep"
   namespace        = "anchor-platform"
   version          = "17.1.3"
   create_namespace = true
