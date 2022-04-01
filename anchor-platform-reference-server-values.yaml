@@ -1,4 +1,4 @@
-fullName: anchor-ref-config
+fullName: anchor-reference
 jwtSecretKey:
 signingSeed: 
 stellar:

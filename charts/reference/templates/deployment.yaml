@@ -29,6 +29,6 @@ spec:
       volumes:
       - name: config-volume
         configMap:
-          name: anchor-platform-reference-server-config-preview-id
+          name: {{ .Release.Name }}-configmap
           
 
