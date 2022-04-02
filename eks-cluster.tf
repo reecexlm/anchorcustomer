@@ -11,56 +11,6 @@ module "eks" {
     root_volume_type = "gp2"
   }
 
-    node_group_defaults = {
-    ami_type               = "AL2_x86_64"
-    disk_size              = 50
-    instance_types         = ["t2.micro"]
-    vpc_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
-  }
-
-  node_groups = {
-    reference = {
-      min_size     = 1
-      max_size     = 2
-      desired_size = 1
-
-      capacity_type  = "SPOT"
-      labels = {
-        app = "anchor-platform-reference-server-preview-id"
-      }
-      taints = {
-        dedicated = {
-          key    = "dedicated"
-          value  = "gpuGroup"
-          effect = "NO_SCHEDULE"
-        }
-      }
-      tags = {
-        ExtraTag = "anchor-platform-reference-server-preview-id"
-      }
-    }
-    sep = {
-      min_size     = 1
-      max_size     = 2
-      desired_size = 1
-
-      capacity_type  = "SPOT"
-      labels = {
-        app = "sep"
-      }
-      taints = {
-        dedicated = {
-          key    = "dedicated"
-          value  = "gpuGroup"
-          effect = "NO_SCHEDULE"
-        }
-      }
-      tags = {
-        ExtraTag = "sep"
-      }
-    }
-  }
-
   worker_groups = [
     {
       name                          = "worker-group-1"
@@ -74,7 +24,31 @@ module "eks" {
       instance_type                 = "t2.micro"
       additional_userdata           = "echo foo bar"
       additional_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
-      asg_desired_capacity          = 1
+      asg_desired_capacity          = 2
+    },
+    {
+      name                          = "worker-group-3"
+      instance_type                 = "t2.micro"
+      additional_userdata           = "echo foo bar"
+      additional_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
+      asg_desired_capacity          = 2
+      tags = [{
+          key                 = "app"
+          value               = "sep"
+          propagate_at_launch = true
+      }]
+    },
+    {
+      name                          = "worker-group-4"
+      instance_type                 = "t2.micro"
+      additional_userdata           = "echo foo bar"
+      additional_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
+      asg_desired_capacity          = 2
+      tags = [{
+          key                 = "app"
+          value               = "reference"
+          propagate_at_launch = true
+      }]
     },
   ]
 
