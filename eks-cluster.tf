@@ -17,7 +17,7 @@ module "eks" {
       resolve_conflicts = "OVERWRITE"
     }
   }
-}
+
 
   # EKS Managed Node Group(s)
   eks_managed_node_group_defaults = {
@@ -44,7 +44,7 @@ module "eks" {
       capacity_type  = "SPOT"
     }
   }
-
+}
 data "aws_eks_cluster" "cluster" {
   name = module.eks.cluster_id
 }
