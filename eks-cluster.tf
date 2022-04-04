@@ -27,8 +27,7 @@ module "eks" {
   }
 
   eks_managed_node_groups = {
-    blue = {}
-    anchor_platform = {
+    sep = {
       min_size     = 1
       max_size     = 1
       desired_size = 1
