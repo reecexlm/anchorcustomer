@@ -12,7 +12,6 @@ metadata:
     ingress.kubernetes.io/content-type-nosniff: "true"
     ingress.kubernetes.io/hsts-max-age: "31536000"
     ingress.kubernetes.io/hsts-include-subdomains: "true"
-
 spec:
   tls:
   - secretName: anchor-platform-sep-server-cert
