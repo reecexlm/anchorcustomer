@@ -24,7 +24,7 @@ module "eks" {
   # EKS Managed Node Group(s)
   eks_managed_node_group_defaults = {
     instance_types = ["t2.micro"]
-    subnet_ids = module.vpc.private_subnets
+    subnet_ids = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
   }
 
   eks_managed_node_groups = {
