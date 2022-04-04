@@ -17,7 +17,7 @@ module "eks" {
       resolve_conflicts = "OVERWRITE"
     }
     vpc_id = module.vpc.vpc_id
-    subnet_ids = module.vpc.private_subnets
+    subnet_ids = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
   }
 
 
