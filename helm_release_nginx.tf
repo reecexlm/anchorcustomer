@@ -1,7 +1,7 @@
 resource "helm_release" "nginx" {
   name        = "nginx"
   chart       = "nginx"
-  repository  = "./charts"
+  repository  = "./charts/nginx"
   namespace   = "nginx"
   max_history = 3
   create_namespace = true
