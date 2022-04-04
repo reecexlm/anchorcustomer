@@ -1,5 +1,5 @@
 resource "helm_release" "nginx" {
-  name        = "./charts/nginx"
+  name        = "./charts"
   chart       = "nginx"
   namespace   = "nginx"
   max_history = 3
