@@ -8,7 +8,6 @@ resource "aws_lb" "dev" {
   load_balancer_type = "application"
   security_groups    = [aws_security_group.lb_sg.id]
   subnets            = module.vpc.public_subnets 
-  allocation_id = aws_eip.lb_eip.id
   enable_deletion_protection = true
 
   tags = {
