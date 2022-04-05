@@ -58,11 +58,6 @@ module "lb-controller" {
   cluster_name = module.eks.cluster.name
   oidc         = module.eks.oidc
   aws_region   = "us-east-2"
-  helm = {
-    vars = module.eks.features.fargate_enabled ? {
-      vpcId = module.vpc.vpc.id
-    } : {}
-  }
 }
 
 data "aws_eks_cluster" "cluster" {
