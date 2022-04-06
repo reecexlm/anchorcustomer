@@ -15,6 +15,7 @@ kind: Ingress
 metadata:
   name: {{ .Release.Name }}-ingress
   namespace: anchor-platform
+  app.kubernetes.io/managed-by: {{ .Release.Service }}
   annotations:
     kubernetes.io/ingress.class: "public"
     cert-manager.io/cluster-issuer: "default"
