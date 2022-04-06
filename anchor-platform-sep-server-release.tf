@@ -8,7 +8,6 @@ resource "helm_release" "sep" {
   reset_values     = true
   max_history      = 3
   timeout          = 600
-  force_update     = true
 
     values = [
     file("${path.module}/anchor-platform-sep-server-values.yaml")
