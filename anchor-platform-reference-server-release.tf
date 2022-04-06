@@ -14,7 +14,7 @@ resource "helm_release" "reference" {
   name             = "reference-server"
   chart            = "./charts/reference"
   namespace        = "anchor-platform"
-  version          = "17.1.3"
+  version          = "17.1.4"
   create_namespace = true
   wait             = true
   reset_values     = true
