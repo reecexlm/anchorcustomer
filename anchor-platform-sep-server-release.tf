@@ -2,7 +2,7 @@ resource "helm_release" "sep" {
   name             = "sep-server"
   chart            = "./charts/sep"
   namespace        = "anchor-platform"
-  version          = "17.1.4"
+  version          = "17.1.3"
   create_namespace = true
   wait             = true
   reset_values     = true
