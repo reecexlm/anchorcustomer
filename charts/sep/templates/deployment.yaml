@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: sep-server
-        image: stellar/anchor-platform: {{ .imageTag }}
+        image: stellar/anchor-platform:d3beeed
         args: ["--sep-server"]
         imagePullPolicy: Always
         ports:

@@ -1,5 +1,4 @@
 fullName: anchor-ref-config
-imageTag: d3beeed
 jwtSecretKey:
 signingSeed: 
 stellar:
