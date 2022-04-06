@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: {{ .Release.Name }}-deployment
   namespace: anchor-platform
-  app.kubernetes.io/managed-by: {{ .Release.Service }}
   labels:
     app: anchor-platform-reference-server-preview-id
 spec:
