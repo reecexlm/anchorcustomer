@@ -33,7 +33,7 @@ module "eks" {
       max_capacity     = 3
       min_capacity     = 3
 
-      instance_type = "t2.micro"
+      instance_type = "t2.medium"
     }
   
     
