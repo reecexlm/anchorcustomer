@@ -10,4 +10,4 @@ spec:
     port: 8080       # port number the service will listen on
     targetPort: 8080 # port number pods listen on
   selector:
-    app: anchor-platform-sep-server
+    app: sep
