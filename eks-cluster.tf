@@ -35,7 +35,7 @@ module "eks" {
       instance_types = ["t2.micro"]
       capacity_type  = "SPOT"
       tags = {
-        app= "anchor-platform-reference-server-preview-id"
+        app= "sep"
       }
     }
     
@@ -47,7 +47,7 @@ module "eks" {
       instance_types = ["t2.micro"]
       capacity_type  = "SPOT"
       tags = {
-        app= "sep"
+        app= "anchor-platform-reference-server-preview-id"
       }
     }
   }
