@@ -29,11 +29,11 @@ module "eks" {
   eks_managed_node_groups = {
     
     second = {
-      desired_capacity = 2
-      max_capacity     = 3
-      min_capacity     = 1
+      desired_capacity = 4
+      max_capacity     = 5
+      min_capacity     = 3
 
-      instance_type = "m5.large"
+      instance_type = "t2.micro"
     }
   
     
