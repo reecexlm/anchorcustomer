@@ -27,7 +27,7 @@ module "eks" {
 
   eks_managed_node_groups = {
     
-    first = {
+    second = {
       desired_capacity = 4
       max_capacity     = 5
       min_capacity     = 3
