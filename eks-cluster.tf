@@ -41,7 +41,7 @@ module "eks" {
       max_size     = 1
       desired_size = 1
 
-      instance_types = ["t2.micro"]
+      instance_types = ["m5.medium"]
       capacity_type  = "SPOT"
       tags = {
         app= "sep"
