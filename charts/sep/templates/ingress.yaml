@@ -3,22 +3,10 @@ kind: Ingress
 metadata:
   name: {{ .Release.Name }}-ingress
   namespace: anchor-platform
-  annotations:
-    kubernetes.io/ingress.class: "public"
-    cert-manager.io/cluster-issuer: "default"
-    ingress.kubernetes.io/ssl-redirect: "true"
-    ingress.kubernetes.io/browser-xss-filter: "true"
-    ingress.kubernetes.io/frame-deny: "true"
-    ingress.kubernetes.io/content-type-nosniff: "true"
-    ingress.kubernetes.io/hsts-max-age: "31536000"
-    ingress.kubernetes.io/hsts-include-subdomains: "true"
 spec:
-  tls:
-  - secretName: anchor-platform-sep-server-cert
-    hosts:
-    - anchor-sep-server-dev.stellar.org
+  ingressClassName: nginx
   rules:
-  - host: anchor-sep-server-dev.stellar.org
+  - host: sep.localdev.me
     http:
       paths:
       - path: /
