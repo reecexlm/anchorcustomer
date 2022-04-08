@@ -23,5 +23,5 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: anchor-platform-sep-server
+          serviceName: sep-server-service
           servicePort: 8080
