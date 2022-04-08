@@ -32,16 +32,16 @@ module "eks" {
       max_capacity     = 5
       min_capacity     = 3
 
-      instance_type = "m5.medium"
+      instance_type = "t2.medium"
     }
   
     
     sep = {
       min_size     = 1
-      max_size     = 1
-      desired_size = 1
+      max_size     = 3
+      desired_size = 2
 
-      instance_types = ["m5.medium"]
+      instance_typ\ = "t2.medium"
       capacity_type  = "SPOT"
       tags = {
         app= "sep"
@@ -53,7 +53,7 @@ module "eks" {
       max_size     = 1
       desired_size = 1
 
-      instance_types = ["t2.micro"]
+      instance_type = "t2.medium"
       capacity_type  = "SPOT"
       tags = {
         app= "anchor-platform-reference-server-preview-id"
