@@ -41,7 +41,7 @@ module "eks" {
       max_size     = 3
       desired_size = 2
 
-      instance_typ\ = "t2.medium"
+      instance_type = "t2.medium"
       capacity_type  = "SPOT"
       tags = {
         app= "sep"
