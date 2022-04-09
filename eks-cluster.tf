@@ -39,7 +39,7 @@ module "eks" {
     sep = {
       min_size     = 1
       max_size     = 3
-      desired_size = 2
+      desired_size = 1
 
       instance_type = "t2.medium"
       capacity_type  = "SPOT"
