@@ -1,0 +1,6 @@
+fullName: anchor-sep
+jwtSecretKey:
+signingSeed: 
+stellar:
+   secretKey:
+
