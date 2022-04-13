@@ -12,6 +12,6 @@ spec:
       - path: /
         backend:
           service:
-            name: {{ .Release.Name }}-service
+            name: {{ .Release.Name }}-ingress
             port:
               number: 8081
