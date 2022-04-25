@@ -6,10 +6,14 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: demo.localdev.me
-    http:
+  - http:
       paths:
-      - path: /\.well-known/
+      - path: /
+        pathType: Prefix
         backend:
-          serviceName: {{ .Release.Name }}-service
-          servicePort: 8080
+          service:
+            name: {{ .Release.Name }}-service
+            port:
+              number: 8080
+
+
