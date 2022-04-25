@@ -38,7 +38,7 @@ module "eks" {
     
     sep = {
       min_size     = 1
-      max_size     = 3
+      max_size     = 2
       desired_size = 1
 
       instance_type = "t2.micro"
@@ -50,13 +50,13 @@ module "eks" {
     
     reference = {
       min_size     = 1
-      max_size     = 1
+      max_size     = 2
       desired_size = 1
 
       instance_type = "t2.micro"
       capacity_type  = "SPOT"
       tags = {
-        app= "anchor-platform-reference-server-preview-id"
+        app= "reference"
       }
     }
   }

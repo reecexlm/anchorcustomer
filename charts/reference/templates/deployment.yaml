@@ -4,16 +4,16 @@ metadata:
   name: {{ .Release.Name }}-deployment
   namespace: anchor-platform
   labels:
-    app: anchor-platform-reference-server-preview-id
+    app: reference
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: anchor-platform-reference-server-preview-id
+      app: reference
   template:
     metadata:
       labels:
-        app: anchor-platform-reference-server-preview-id
+        app: reference
     spec:
       containers:
       - name: reference-server
