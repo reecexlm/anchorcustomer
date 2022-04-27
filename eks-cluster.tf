@@ -3,10 +3,9 @@ module "eks" {
   version = "18.20.5"
 
   cluster_name    = "${local.cluster_name}"
-  cluster_version = "1.22"
-
   cluster_endpoint_private_access = true
   cluster_endpoint_public_access  = true
+  instance_types = ["t3.micro"]
 
   cluster_addons = {
     coredns = {
@@ -33,9 +32,17 @@ module "eks" {
   eks_managed_node_groups = {
     
     common = {
+      instance_types = ["t3.micro"]
+      capacity_type = "SPOT"
+
       desired_capacity = 4
       max_capacity     = 4
       min_capacity     = 4
+
+        tags = {
+          Environment = "dev"
+          Terraform   = "true"
+        }
     }
   }
 }
