@@ -30,15 +30,15 @@ module "eks" {
     second = {
       desired_capacity = 2
       max_capacity     = 3
-      min_capacity     = 1
+      min_capacity     = 2
 
       instance_type = "t2.nano"
     }
       
     sep = {
-      min_size     = 1
-      max_size     = 2
-      desired_size = 1
+      min_size     = 2
+      max_size     = 3
+      desired_size = 2
 
       instance_type = "t2.nano"
       capacity_type  = "SPOT"
@@ -48,9 +48,9 @@ module "eks" {
     }
     
     reference = {
-      min_size     = 1
-      max_size     = 2
-      desired_size = 1
+      min_size     = 2
+      max_size     = 3
+      desired_size = 2
 
       instance_type = "t2.nano"
       capacity_type  = "SPOT"
