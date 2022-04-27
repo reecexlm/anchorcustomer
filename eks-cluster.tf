@@ -29,18 +29,18 @@ module "eks" {
     
     second = {
       desired_capacity = 2
-      max_capacity     = 2
+      max_capacity     = 3
       min_capacity     = 1
 
-      instance_type = "t2.micro"
+      instance_type = "t3.nano"
     }
       
     sep = {
       min_size     = 1
-      max_size     = 1
+      max_size     = 2
       desired_size = 1
 
-      instance_type = "t2.micro"
+      instance_type = "t3.nano"
       capacity_type  = "SPOT"
       tags = {
         app= "sep"
@@ -49,10 +49,10 @@ module "eks" {
     
     reference = {
       min_size     = 1
-      max_size     = 1
+      max_size     = 2
       desired_size = 1
 
-      instance_type = "t2.micro"
+      instance_type = "t3.nano"
       capacity_type  = "SPOT"
       tags = {
         app= "reference"
