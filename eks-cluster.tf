@@ -22,17 +22,17 @@ module "eks" {
   subnet_ids = module.vpc.private_subnets
 
   # EKS Managed Node Group(s)
-  eks_managed_node_group_defaults = {
+  self_managed_node_group_defaults = {
+    instance_type                          = "t3.micro"
+    update_launch_template_default_version = true
   }
 
   eks_managed_node_groups = {
     
     node_group = {
-      desired_capacity = 5
-      max_capacity     = 5
-      min_capacity     = 5
-
-      instance_type = "t2.nano"
+      desired_capacity = 4
+      max_capacity     = 4
+      min_capacity     = 4
     }
   }
 }
