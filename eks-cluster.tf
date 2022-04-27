@@ -23,18 +23,41 @@ module "eks" {
 
   # EKS Managed Node Group(s)
   eks_managed_node_group_defaults = {
-    instance_type = "t2.nano"
   }
 
   eks_managed_node_groups = {
     
-    common = {
-      desired_capacity = 5
-      max_capacity     = 5
-      min_capacity     = 5
+    second = {
+      desired_capacity = 3
+      max_capacity     = 3
+      min_capacity     = 3
+
       instance_type = "t2.nano"
     }
       
+    sep = {
+      min_size     = 3
+      max_size     = 3
+      desired_size = 3
+
+      instance_type = "t2.nano"
+      capacity_type  = "SPOT"
+      tags = {
+        app= "sep"
+      }
+    }
+    
+    reference = {
+      min_size     = 3
+      max_size     = 3
+      desired_size = 3
+
+      instance_type = "t2.nano"
+      capacity_type  = "SPOT"
+      tags = {
+        app= "reference"
+      }
+    }
   }
 }
 
