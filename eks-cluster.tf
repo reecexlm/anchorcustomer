@@ -32,7 +32,7 @@ module "eks" {
       max_capacity     = 3
       min_capacity     = 1
 
-      instance_type = "t3.nano"
+      instance_type = "t2.nano"
     }
       
     sep = {
@@ -40,7 +40,7 @@ module "eks" {
       max_size     = 2
       desired_size = 1
 
-      instance_type = "t3.nano"
+      instance_type = "t2.nano"
       capacity_type  = "SPOT"
       tags = {
         app= "sep"
@@ -52,7 +52,7 @@ module "eks" {
       max_size     = 2
       desired_size = 1
 
-      instance_type = "t3.nano"
+      instance_type = "t2.nano"
       capacity_type  = "SPOT"
       tags = {
         app= "reference"
