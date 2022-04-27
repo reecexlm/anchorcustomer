@@ -5,8 +5,6 @@ module "eks" {
   cluster_name    = "${local.cluster_name}"
   cluster_endpoint_private_access = true
   cluster_endpoint_public_access  = true
-  instance_types = ["t3.micro"]
-
   cluster_addons = {
     coredns = {
       resolve_conflicts = "OVERWRITE"
