@@ -35,7 +35,7 @@ module "eks" {
       instance_types = ["t3.nano", "t3.micro", "t3.small"]
       desired_size = 2
       min_size     = 1
-      min_size     = 4
+      max_size     = 4
 
         tags = {
           Environment = "dev"
