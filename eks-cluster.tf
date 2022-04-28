@@ -33,9 +33,9 @@ module "eks" {
       
       capacity_type = "SPOT"
       instance_types = ["t3.nano", "t3.micro", "t3.small"]
-      desired_capacity = 4
-      max_capacity     = 4
-      min_capacity     = 4
+      desired_size = 2
+      min_size     = 1
+      min_size     = 4
 
         tags = {
           Environment = "dev"
