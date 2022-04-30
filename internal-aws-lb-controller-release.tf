@@ -17,6 +17,11 @@ resource "helm_release" "aws-lb-controller" {
     name  = "clusterName"
     value = data.aws_eks_cluster.cluster.name
   }
+
+  set {
+    name  = "controller.admissionWebhooks.enabled"
+    value = "false"
+  }
   
 }
 
