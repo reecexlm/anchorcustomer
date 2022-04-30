@@ -8,11 +8,15 @@ resource "helm_release" "aws-lb-controller" {
   reset_values     = true
   max_history      = 3
   timeout          = 600
-  clusterName      = data.aws_eks_cluster.cluster.name
   
   values = [
     file("${path.module}/aws-lb-controller-values.yaml")
   ]
+
+  set {
+    name  = "clusterName"
+    value = data.aws_eks_cluster.cluster.name
+  }
   
 }
 
