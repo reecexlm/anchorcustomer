@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: {{ .Release.Name }}-ingress
   namespace: anchor-platform
-  annotation:
+  annotations:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/group.name: reference
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 8081}]'
