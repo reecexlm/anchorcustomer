@@ -1,4 +1,4 @@
-resource "helm_release" "ingress-nginx" {
+resource "helm_release" "aws-lb-controller" {
   name             = "aws-lb-controller"
   repository = "https://aws.github.io/eks-charts"
   chart      = "aws-load-balancer-controller"
