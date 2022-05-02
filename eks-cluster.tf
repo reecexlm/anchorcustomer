@@ -122,9 +122,6 @@ module "eks" {
         }
     }
   }
-  depends_on = [
-    aws_iam_role_policy_attachment.amazon_eks_cluster_policy
-  ]
 }
 
 data "aws_eks_cluster" "cluster" {
