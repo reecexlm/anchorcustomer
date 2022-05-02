@@ -5,16 +5,6 @@ metadata:
   namespace: anchor-platform
 data:
   reference-config.yaml: |
-    apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: anchor-platform-reference-server-config-preview-id
-  namespace: common-previews
-  annotations:
-    fluxcd.io/ignore: "true"  # Manifests only used for PR previews
-data:
-  # TODO: remove all secrets (ex: move to env vars, k8s secrets, vault, etc...)
-  reference-config.yaml: |
     server:
       servlet:
         context-path: /
