@@ -55,6 +55,7 @@ module "eks" {
   }
   vpc_id     = module.vpc.vpc_id
   subnet_ids = module.vpc.private_subnets
+  role_arn = aws_iam_role.eks_cluster.arn
 
   cluster_security_group_additional_rules = {
     egress_nodes_ephemeral_ports_tcp = {
