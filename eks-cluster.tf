@@ -34,8 +34,6 @@ resource "aws_iam_role_policy_attachment" "amazon_eks_cluster_policy" {
   role = aws_iam_role.eks_cluster.name
 }
 
-# Resource: aws_eks_cluster
-# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eks_cluster
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
@@ -122,6 +120,7 @@ module "eks" {
         }
     }
   }
+}
 
 data "aws_eks_cluster" "cluster" {
   name = module.eks.cluster_id
