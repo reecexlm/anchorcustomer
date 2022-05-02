@@ -21,6 +21,7 @@ resource "aws_iam_role" "eks_cluster" {
 POLICY
 }
 
+
 # Resource: aws_iam_role_policy_attachment
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment
 
@@ -55,7 +56,6 @@ module "eks" {
   }
   vpc_id     = module.vpc.vpc_id
   subnet_ids = module.vpc.private_subnets
-  role_arn = aws_iam_role.eks_cluster.arn
 
   cluster_security_group_additional_rules = {
     egress_nodes_ephemeral_ports_tcp = {
@@ -122,7 +122,6 @@ module "eks" {
         }
     }
   }
-}
 
 data "aws_eks_cluster" "cluster" {
   name = module.eks.cluster_id
@@ -135,4 +134,24 @@ data "aws_eks_cluster_auth" "cluster" {
 data "aws_eks_cluster_auth" "cluster-auth" {
   depends_on = [module.eks.cluster_id]
   name       = module.eks.cluster_id
+}
+
+module "vpc_cni_irsa" {
+  source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
+
+  role_name             = "vpc_cni"
+  attach_vpc_cni_policy = true
+  vpc_cni_enable_ipv4   = true
+
+  oidc_providers = {
+    main = {
+      provider_arn               = module.eks.oidc_provider_arn
+      namespace_service_accounts = ["kube-system:aws-node"]
+    }
+  }
+
+  tags = {
+    Environment = "dev"
+    Terraform   = "true"
+  }
 }
