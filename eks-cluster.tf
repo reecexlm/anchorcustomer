@@ -121,7 +121,24 @@ module "eks" {
         }
     }
   }
+   manage_aws_auth_configmap = true
+
+    aws_auth_users = [
+    {
+      userarn  = "arn:aws:iam::245943599471:user/anchor-platform-k8"
+      username = "anchor-platform-k8"
+      groups   = ["system:masters"]
+    },
+  ]
+
+ 
+
+  tags = {
+    Environment = "dev"
+    Terraform   = "true"
+  }
 }
+
 
 data "aws_eks_cluster" "cluster" {
   name = module.eks.cluster_id
