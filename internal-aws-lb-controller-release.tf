@@ -22,6 +22,11 @@ resource "helm_release" "aws-lb-controller" {
     name  = "controller.admissionWebhooks.enabled"
     value = "false"
   }
+
+  set { 
+    name = "serviceAccount.name"
+    value = "alb-ingress-controller"
+  }
   
 }
 
