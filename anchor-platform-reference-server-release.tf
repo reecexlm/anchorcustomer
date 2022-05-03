@@ -2,13 +2,13 @@ locals {
   template_vars = {
     alb_ingress_iam_role_arn = aws_iam_role.eks_cluster.arn
   }
+
+
+  helm_chart_values = templatefile(
+      "${path.module}/anchor-platform-reference-server-values.yaml",
+      local.template_vars
+  )
 }
-
-helm_chart_values = templatefile(
-    "${path.module}/anchor-platform-reference-server-values.yaml",
-    local.template_vars
-)
-
 resource "helm_release" "reference" {
   name             = "reference-server"
   chart            = "./charts/reference"
@@ -21,7 +21,7 @@ resource "helm_release" "reference" {
   timeout          = 600
 
 values = (
-    file("${path.module}/anchor-platform-reference-server-values.yaml")
+    local.helm_chart_values
 )
 
 }
