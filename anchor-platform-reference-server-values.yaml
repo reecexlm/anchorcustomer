@@ -1,4 +1,5 @@
 fullName: anchor-reference
+alb-ingress-iam-role-arn: ${alb_ingress_iam_role_arn}
 jwtSecretKey:
 signingSeed: 
 stellar:
