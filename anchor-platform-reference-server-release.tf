@@ -17,7 +17,7 @@ resource "helm_release" "reference" {
 
   values = [
     file("${path.module}/anchor-platform-reference-server-values.yaml"),
-    template_vars
+    local.template_vars
   ]
 }
 
