@@ -255,7 +255,7 @@ resource "aws_iam_policy" "elb_controller_policy" {
 resource "aws_iam_role_policy_attachment" "amazon_eks_cluster_policy" {
   # The ARN of the policy you want to apply
   # https://github.com/SummitRoute/aws_managed_policies/blob/master/policies/AmazonEKSClusterPolicy
-  policy_arn = resource.aws_iam_policy.elb_controller_policy.policy.arn
+  policy_arn = aws_iam_policy.elb_controller_policy.arn
 
   # The role the policy should be applied to
   role = aws_iam_role.eks_cluster.name
