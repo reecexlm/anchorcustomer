@@ -61,4 +61,4 @@ metadata:
   name: alb-ingress-controller
   namespace: kube-system
   annotations:
-    eks.amazonaws.com/role-arn: {{ .Values.alb_ingress_iam_role_arn }}
+    eks.amazonaws.com/role-arn: arn:aws:iam::245943599471:role/eks-cluster
