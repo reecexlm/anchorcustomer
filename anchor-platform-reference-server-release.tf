@@ -1,6 +1,6 @@
 locals {
   template_vars = {
-    alb_ingress_iam_role_arn = data.aws_iam_role.eks_cluster_iam.arn
+    alb_ingress_iam_role_arn = aws_iam_role.eks_cluster.arn
   }
 }
 
