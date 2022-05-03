@@ -1,4 +1,4 @@
-resource "aws_iam_role" "eks_cluster_role" {
+resource "aws_iam_role" "eks_cluster" {
   # The name of the role
   name = "eks-cluster"
 
@@ -7,6 +7,29 @@ resource "aws_iam_role" "eks_cluster_role" {
   # The role that Amazon EKS will use to create AWS resources for Kubernetes clusters
   assume_role_policy = <<POLICY
 {
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "eks.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+POLICY
+}
+
+resource "aws_iam_policy" "elb_controller_policy" {
+  name        = "aws_load_balancer_controller"
+  path        = "/"
+  description = "aws-load-balancer-controller"
+
+  # Terraform's "jsonencode" function converts a
+  # Terraform expression result to valid JSON syntax.
+  policy = <<EOF
+  {
     "Version": "2012-10-17",
     "Statement": [
         {
@@ -224,18 +247,14 @@ resource "aws_iam_role" "eks_cluster_role" {
             "Resource": "*"
         }
     ]
-}  
-POLICY
 }
-
-
-# Resource: aws_iam_role_policy_attachment
-# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment
+EOF
+}
 
 resource "aws_iam_role_policy_attachment" "amazon_eks_cluster_policy" {
   # The ARN of the policy you want to apply
   # https://github.com/SummitRoute/aws_managed_policies/blob/master/policies/AmazonEKSClusterPolicy
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
+  policy_arn = resource.aws_iam_policy.elb_controller_policy.policy.arn
 
   # The role the policy should be applied to
   role = aws_iam_role.eks_cluster.name
@@ -256,7 +275,6 @@ module "eks" {
     kube-proxy = {}
     vpc-cni = {
       resolve_conflicts = "OVERWRITE"
-      service_account_role_arn = module.vpc_cni_irsa.iam_role_arn
     }
 
   }
@@ -328,24 +346,7 @@ module "eks" {
         }
     }
   }
-   manage_aws_auth_configmap = true
-
-    aws_auth_users = [
-    {
-      userarn  = "arn:aws:iam::245943599471:user/anchor-platform-k8"
-      username = "anchor-platform-k8"
-      groups   = ["system:masters"]
-    },
-  ]
-
- 
-
-  tags = {
-    Environment = "dev"
-    Terraform   = "true"
-  }
 }
-
 
 data "aws_eks_cluster" "cluster" {
   name = module.eks.cluster_id
@@ -353,10 +354,6 @@ data "aws_eks_cluster" "cluster" {
 
 data "aws_eks_cluster_auth" "cluster" {
   name = module.eks.cluster_id
-}
-
-data "aws_iam_role" "eks_cluster_iam" {
-  name = "eks_cluster_role"
 }
 
 data "aws_eks_cluster_auth" "cluster-auth" {
