@@ -23,11 +23,7 @@ POLICY
 
 resource "aws_iam_policy" "elb_controller_policy" {
   name        = "aws_load_balancer_controller"
-  path        = "/"
   description = "aws-load-balancer-controller"
-
-  # Terraform's "jsonencode" function converts a
-  # Terraform expression result to valid JSON syntax.
   policy = jsonencode(
     {
    "Version":"2012-10-17",
@@ -248,17 +244,12 @@ resource "aws_iam_policy" "elb_controller_policy" {
       }
    ]
 }
-)
-  
+)  
 }
 
 resource "aws_iam_role_policy_attachment" "amazon_eks_cluster_policy" {
-  # The ARN of the policy you want to apply
-  # https://github.com/SummitRoute/aws_managed_policies/blob/master/policies/AmazonEKSClusterPolicy
-  policy_arn = aws_iam_policy.elb_controller_policy.arn
-
-  # The role the policy should be applied to
   role = aws_iam_role.eks_cluster.name
+  policy_arn = aws_iam_policy.elb_controller_policy.arn
 }
 
 

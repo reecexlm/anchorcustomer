@@ -16,7 +16,8 @@ resource "helm_release" "reference" {
   timeout          = 600
 
   values = [
-    file("${path.module}/anchor-platform-reference-server-values.yaml")
+    file("${path.module}/anchor-platform-reference-server-values.yaml"),
+    template_vars
   ]
 }
 
