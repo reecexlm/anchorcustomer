@@ -20,9 +20,7 @@ resource "helm_release" "reference" {
   max_history      = 3
   timeout          = 600
 
-values = (
-    local.helm_chart_values
-)
+values = [local.helm_chart_values]
 
 }
 
