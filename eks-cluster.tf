@@ -323,11 +323,6 @@ module "eks" {
     ]
   }
 
-data "null_data_source" "api_gw_url" {
-    inputs = {
-      main_api_gw = "app.api${var.env_name == "prod" ? "." : ".${var.env_name}."}mydomain.com"
-    }
-}
   eks_managed_node_groups = {
     
     common = {
