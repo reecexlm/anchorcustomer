@@ -1,5 +1,5 @@
 resource "helm_release" "aws-lb-controller" {
-  name             = "aws-lb-controller"
+  name             = "alb-ingress-controller"
   repository = "https://aws.github.io/eks-charts"
   chart      = "aws-load-balancer-controller"
   namespace        = "awsloadbalancer"
