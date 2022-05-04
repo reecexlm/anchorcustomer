@@ -10,6 +10,7 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internal
   labels:
     app: reference-ingress
+    dap: pap
 spec:
   rules:
     - http:
