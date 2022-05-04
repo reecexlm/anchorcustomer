@@ -319,10 +319,15 @@ module "eks" {
     update_launch_template_default_version = true
     iam_role_additional_policies = [
       "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore",
-      aws_iam_policy.elb_controller_policy.name
+      "arn:aws:iam::aws:policy/${aws_iam_policy.elb_controller_policy.name}"
     ]
   }
 
+ata "null_data_source" "api_gw_url" {
+    inputs = {
+      main_api_gw = "app.api${var.env_name == "prod" ? "." : ".${var.env_name}."}mydomain.com"
+    }
+}
   eks_managed_node_groups = {
     
     common = {
