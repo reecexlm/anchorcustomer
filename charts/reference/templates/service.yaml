@@ -4,7 +4,7 @@ metadata:
   name: {{ .Release.Name }}-service
   namespace: anchor-platform
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
   - protocol: TCP
     port: 8081       # port number the service will listen on
