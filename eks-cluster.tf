@@ -319,7 +319,7 @@ module "eks" {
     update_launch_template_default_version = true
     iam_role_additional_policies = [
       "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore",
-      "arn:aws:iam::aws:policy/${aws_iam_policy.elb_controller_policy.name}"
+      "${aws_iam_policy.elb_controller_policy.arn}"
     ]
   }
 
