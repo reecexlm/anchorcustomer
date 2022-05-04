@@ -318,7 +318,8 @@ module "eks" {
     instance_types = ["t3.nano", "t3.micro", "t3.small"]
     update_launch_template_default_version = true
     iam_role_additional_policies = [
-      "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+      "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore",
+      aws_iam_policy.elb_controller_policy.name
     ]
   }
 
