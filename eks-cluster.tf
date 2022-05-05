@@ -249,7 +249,8 @@ resource "aws_iam_policy" "elb_controller_policy" {
 
 resource "aws_iam_role_policy_attachment" "amazon_eks_cluster_policy" {
   role = aws_iam_role.eks_cluster.name
-  policy_arn = aws_iam_policy.elb_controller_policy.arn
+  #policy_arn = aws_iam_policy.elb_controller_policy.arn
+  policy_arn = "arn:aws:iam::aws:policy/AWSDirectConnectReadOnlyAccess"
 }
 
 
