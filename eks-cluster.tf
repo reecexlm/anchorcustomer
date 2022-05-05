@@ -320,11 +320,11 @@ module "eks" {
 
   # EKS Managed Node Group(s)
   eks_managed_node_group_defaults = {
-    instance_types = ["t3.nano", "t3.micro", "t3.small"]
+    instance_types = ["t3.nano", "t3.micro"]
     update_launch_template_default_version = true
-    iam_role_additional_policies = [
-      "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
-    ]
+    #iam_role_additional_policies = [
+    #  "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+    #]
   }
 
   eks_managed_node_groups = {
