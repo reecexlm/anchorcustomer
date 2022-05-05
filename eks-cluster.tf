@@ -371,5 +371,5 @@ resource "aws_route53_record" "reference" {
   name    = "reference-server"
   type    = "CNAME"
   ttl     = "300"
-  records = [data.kubernetes_ingress.exreferenceample.status.0.load_balancer.0.ingress.0.hostname]
+  records = [data.kubernetes_ingress.reference.status.0.load_balancer.0.ingress.0.hostname]
 }
