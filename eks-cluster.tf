@@ -319,8 +319,7 @@ module "eks" {
     update_launch_template_default_version = true
     iam_role_additional_policies = [
       "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore",
-      "${aws_iam_policy.elb_controller_policy.arn}"
-     
+      "${aws_iam_role_policy_attachment.amazon_eks_cluster_policy.arn}"
     ]
   }
 
@@ -357,22 +356,3 @@ data "aws_eks_cluster_auth" "cluster-auth" {
   depends_on = [module.eks.cluster_id]
   name       = module.eks.cluster_id
 }
-
-#module "vpc_cni_irsa" {
-#  source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
-#
-#  role_name             = "vpc_cni"
-#  attach_vpc_cni_policy = true
-#  vpc_cni_enable_ipv4   = true
-#  oidc_providers = {
- #   main = {
- #     provider_arn               = module.eks.oidc_provider_arn
- #     namespace_service_accounts = ["kube-system:aws-node"]
- #   }
- # }
-
- # tags = {
- #   Environment = "dev"
- #   Terraform   = "true"
- # }
-#}
