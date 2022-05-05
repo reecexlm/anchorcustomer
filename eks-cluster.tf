@@ -256,6 +256,9 @@ resource "aws_iam_role_policy_attachment" "additional" {
   for_each = module.eks.eks_managed_node_groups
   role = aws_iam_role.eks_cluster.name
   policy_arn = aws_iam_policy.elb_controller_policy.arn
+  depends_on = [
+    data.aws_eks_cluster.cluster
+  ]
 }
 
 module "eks" {
