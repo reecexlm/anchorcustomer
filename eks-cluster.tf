@@ -339,9 +339,6 @@ module "eks" {
         }
     }
   }
-  depends_on = [
-    aws_iam_policy.elb_controller_policy
-  ]
 }
 
 data "aws_eks_cluster" "cluster" {
@@ -358,7 +355,7 @@ data "aws_eks_cluster_auth" "cluster-auth" {
 }
 
 resource "aws_iam_role_policy_attachment" "additional" {
-  for_each = module.eks.eks_managed_node_groups
-  policy_arn = aws_iam_policy.elb_controller_policy.arn
-  role = each.value.eks_cluster
+   for_each = module.eks.eks_managed_node_groups
+   policy_arn = aws_iam_policy.elb_controller_policy.arn
+   role = each.value.eks_cluster
 }
