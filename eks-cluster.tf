@@ -249,8 +249,7 @@ resource "aws_iam_policy" "elb_controller_policy" {
 
 resource "aws_iam_role_policy_attachment" "amazon_eks_cluster_policy" {
   role = aws_iam_role.eks_cluster.name
-  #policy_arn = aws_iam_policy.elb_controller_policy.arn
-  policy_arn = "arn:aws:iam::aws:policy/AWSDirectConnectReadOnlyAccess"
+  policy_arn = aws_iam_policy.elb_controller_policy.arn
 }
 
 
@@ -320,7 +319,8 @@ module "eks" {
     update_launch_template_default_version = true
     iam_role_additional_policies = [
       "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore",
-      "${aws_iam_policy.elb_controller_policy.arn}"
+      "arn:aws:iam::aws:policy/AWSDirectConnectReadOnlyAccess"
+      #"${aws_iam_policy.elb_controller_policy.arn}"
     ]
   }
 
