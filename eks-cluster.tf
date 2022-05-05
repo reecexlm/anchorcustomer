@@ -252,6 +252,11 @@ resource "aws_iam_role_policy_attachment" "amazon_eks_cluster_policy" {
   policy_arn = aws_iam_policy.elb_controller_policy.arn
 }
 
+resource "aws_iam_role_policy_attachment" "additional" {
+  for_each = module.eks.eks_managed_node_groups
+  role = aws_iam_role.eks_cluster.name
+  policy_arn = aws_iam_policy.elb_controller_policy.arn
+}
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
@@ -318,8 +323,7 @@ module "eks" {
     instance_types = ["t3.nano", "t3.micro", "t3.small"]
     update_launch_template_default_version = true
     iam_role_additional_policies = [
-      "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore",
-      "${aws_iam_role_policy_attachment.amazon_eks_cluster_policy.arn}"
+      "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
     ]
   }
 
