@@ -1,3 +1,6 @@
+locals {
+    elb_controller_policy_arn = "${aws_iam_policy.elb_controller_policy.arn}"
+}
 resource "aws_iam_role" "eks_cluster" {
   # The name of the role
   name = "eks-cluster"
@@ -319,8 +322,8 @@ module "eks" {
     update_launch_template_default_version = true
     iam_role_additional_policies = [
       "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore",
-      "arn:aws:iam::aws:policy/AWSDirectConnectReadOnlyAccess"
-      #"${aws_iam_policy.elb_controller_policy.arn}"
+      local.elb_controller_policy_arn
+     
     ]
   }
 
