@@ -252,11 +252,7 @@ resource "aws_iam_role_policy_attachment" "amazon_eks_cluster_policy" {
   policy_arn = aws_iam_policy.elb_controller_policy.arn
 }
 
-resource "aws_iam_role_policy_attachment" "additional" {
-  for_each = module.eks.eks_managed_node_groups
-  role = each.value.aws_iam_role
-  policy_arn = aws_iam_policy.elb_controller_policy.arn
-}
+
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
@@ -359,4 +355,11 @@ data "aws_eks_cluster_auth" "cluster" {
 data "aws_eks_cluster_auth" "cluster-auth" {
   depends_on = [module.eks.cluster_id]
   name       = module.eks.cluster_id
+}
+
+resource "aws_iam_role_policy_attachment" "additional" {
+  for_each = module.eks.eks_managed_node_groups
+  policy_arn = aws_iam_policy.elb_controller_policy.arn
+  role = each.value.aws_iam_role
+
 }
