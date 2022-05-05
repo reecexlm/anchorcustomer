@@ -359,3 +359,17 @@ resource "aws_iam_role_policy_attachment" "additional" {
    policy_arn = aws_iam_policy.elb_controller_policy.arn
    role = each.value.iam_role_name
 }
+
+data "kubernetes_ingress" "reference" {
+  metadata {
+    name = "reference-server-ingress"
+  }
+}
+
+resource "aws_route53_record" "reference" {
+  zone_id = data.aws_route53_zone.k8.zone_id
+  name    = "reference-server"
+  type    = "CNAME"
+  ttl     = "300"
+  records = [data.kubernetes_ingress.exreferenceample.status.0.load_balancer.0.ingress.0.hostname]
+}
