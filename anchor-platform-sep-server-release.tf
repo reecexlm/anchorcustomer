@@ -19,7 +19,7 @@ resource "helm_release" "sep" {
   max_history      = 3
   timeout          = 600
 
-    values = "${path.module}/anchor-platform-sep-server-values.yaml"
+    values = []"${path.module}/anchor-platform-sep-server-values.yaml"]
     #values = templatefile("${path.module}/anchor-platform-sep-server-values.yaml",
     #local.template_vars)
 }
