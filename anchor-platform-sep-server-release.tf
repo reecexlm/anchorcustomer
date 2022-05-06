@@ -29,8 +29,8 @@ resource "helm_release" "sep" {
 
 
 
-  helm_chart_values = templatefile(
-      "${path.module}/anchor-platform-reference-server-values.yaml",
-      local.template_vars
-  )
-}
+ # helm_chart_values = templatefile(
+ #     "${path.module}/anchor-platform-reference-server-values.yaml",
+ #     local.template_vars
+ # )
+#}
