@@ -2,6 +2,9 @@ data "kubernetes_ingress" "reference" {
   metadata {
     name = "reference-server-ingress"
   }
+  depends_on = [module.eks.cluster_id]
+    
+  ]
 }
 locals {
   sep_template_vars = {
