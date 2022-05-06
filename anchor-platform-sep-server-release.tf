@@ -4,7 +4,7 @@ data "kubernetes_ingress" "reference" {
   }
   depends_on = [module.eks.cluster_id]
     
-  ]
+  
 }
 locals {
   sep_template_vars = {
