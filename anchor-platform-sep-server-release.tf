@@ -7,7 +7,7 @@ locals {
   template_vars = {
     reference_endpoint = data.kubernetes_ingress.reference.status.0.load_balancer.0.ingress.0.hostname
   }
-
+}
 resource "helm_release" "sep" {
   name             = "sep-server"
   chart            = "./charts/sep"
