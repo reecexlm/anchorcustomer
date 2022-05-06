@@ -4,7 +4,7 @@ data "kubernetes_ingress" "reference" {
   }
 }
 locals {
-  template_vars = {
+  sep_template_vars = {
     reference_endpoint = data.kubernetes_ingress.reference.status.0.load_balancer.0.ingress.0.hostname
   }
 }
@@ -21,7 +21,7 @@ resource "helm_release" "sep" {
 
     #values = []#"${path.module}/anchor-platform-sep-server-values.yaml"]
     values = [templatefile("${path.module}/anchor-platform-sep-server-values.yaml",
-    local.template_vars)]
+    local.sep_template_vars)]
 }
  # helm_chart_values = templatefile(
  #     "${path.module}/anchor-platform-reference-server-values.yaml",
