@@ -1,6 +1,7 @@
 data "kubernetes_ingress" "reference" {
   metadata {
     name = "reference-server-ingress"
+    namespace = "anchor-platform"
   }
   depends_on = [module.eks.cluster_id]
     
