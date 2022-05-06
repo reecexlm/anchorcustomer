@@ -4,7 +4,7 @@ metadata:
   name: {{ .Release.Name }}-configmap
   namespace: anchor-platform
 data:
-  anchor-config.yaml: |
+  anchor-config.yaml: 
     stellar:
       anchor:
         # Configure the application from this file after it is loaded in memory
@@ -27,7 +27,7 @@ data:
       # general
       app:
         stellarNetworkPassphrase: Test SDF Network ; September 2015
-        hostUrl: http://localhost:8080
+        hostUrl: {{ .Values.reference_endpoint }}
         languages: en
         horizonUrl: https://horizon-testnet.stellar.org
         assets: assets-test.json

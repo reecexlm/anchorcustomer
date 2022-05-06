@@ -9,6 +9,8 @@ locals {
       local.template_vars
   )
 }
+
+
 resource "helm_release" "reference" {
   name             = "reference-server"
   chart            = "./charts/reference"
