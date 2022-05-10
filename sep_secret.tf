@@ -26,5 +26,6 @@ iALp8aKCvXGiA+PS7222H8LBdg9FHzuxFe+NPS7jaYblhW1Ncd8oVZZljEJDYPhH
 8nLE2ZxtKKtAyX/e
 -----END CERTIFICATE-----
 EOT
+}
   type = "kubernetes.io/tls"
 }
