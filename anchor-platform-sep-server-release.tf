@@ -26,6 +26,7 @@ resource "helm_release" "sep" {
     #values = []#"${path.module}/anchor-platform-sep-server-values.yaml"]
     values = [templatefile("${path.module}/anchor-platform-sep-server-values.yaml",
     local.sep_template_vars)]
+    depends_on = [resource.helm_release.reference]
 }
  # helm_chart_values = templatefile(
  #     "${path.module}/anchor-platform-reference-server-values.yaml",
