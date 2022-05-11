@@ -10,7 +10,7 @@ esource "kubernetes_secret" "sep_cert" {
 
   data = {
     "tls.crt" = jsondecode(data.aws_secretsmanager_secret.sep_cert.secret_string)["crt"]
-    "tls.key" = jsondecode(data.aws_secretsmanager_secret.sep_cert.secret_string)("key")
+    "tls.key" = jsondecode(data.aws_secretsmanager_secret.sep_cert.secret_string)["key"]
 }
   type = "kubernetes.io/tls"
 }
