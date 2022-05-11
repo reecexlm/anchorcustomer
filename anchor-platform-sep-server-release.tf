@@ -1,6 +1,6 @@
-data "kubernetes_ingress" "reference" {
+data "kubernetes_ingress" "sep" {
   metadata {
-    name = "reference-server-ingress"
+    name = "sep-server-ingress"
     namespace = "anchor-platform"
   }
   depends_on = [module.eks.cluster_id]
@@ -10,6 +10,7 @@ data "kubernetes_ingress" "reference" {
 locals {
   sep_template_vars = {
     reference_endpoint = data.kubernetes_ingress.reference.status.0.load_balancer.0.ingress.0.hostname
+    sep_endpoint = data.kubernetes_ingress.sep.status.0.load_balancer.0.ingress.0.hostname
   }
 }
 resource "helm_release" "sep" {

@@ -5,15 +5,17 @@ metadata:
   namespace: anchor-platform
   annotations:
     cert-manager.io/issuer: "default"
-    nginx.ingress.kubernetes.io/enable-cors: "true"
-    nginx.ingress.kubernetes.io/cors-allow-methods: "PUT, GET, POST, OPTIONS"
-    nginx.ingress.kubernetes.io/cors-allow-origin: "https://a917f55ca04584c37929c9e84ad486bb-2007805990.us-east-2.elb.amazonaws.com"
-    nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
+    ingress.kubernetes.io/ssl-redirect: "true"
+    ingress.kubernetes.io/browser-xss-filter: "true"
+    ingress.kubernetes.io/frame-deny: "true"
+    ingress.kubernetes.io/content-type-nosniff: "true"
+    ingress.kubernetes.io/hsts-max-age: "31536000"
+    ingress.kubernetes.io/hsts-include-subdomains: "true"
 spec:
   tls:
     - secretName: anchor-platform-sep-server-cert
       hosts:
-      - {{ .Values.reference_endpoint }}
+      - {{ .Values.sep_endpoint }}
   ingressClassName: nginx
   rules:
   - http:
