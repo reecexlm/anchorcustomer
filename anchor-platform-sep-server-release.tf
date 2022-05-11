@@ -3,9 +3,15 @@ data "kubernetes_ingress" "sep" {
     name = "sep-server-ingress"
     namespace = "anchor-platform"
   }
+  depends_on = [module.eks.cluster_id] 
+}
+
+data "kubernetes_ingress" "reference" {
+  metadata {
+    name = "reference-server-ingress"
+    namespace = "anchor-platform"
+  }
   depends_on = [module.eks.cluster_id]
-    
-  
 }
 locals {
   sep_template_vars = {
