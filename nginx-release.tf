@@ -15,7 +15,8 @@ resource "helm_release" "ingress-nginx" {
 
   values = [templatefile("${path.module}/nginx-values.yaml",
     local.s_template_vars)]
-    depends_on = [module.eks.cluster_id]
+  depends_on = [module.eks.cluster_id]
+  
 }
 
 #resource "aws_route53_zone" "anchorzone" {
