@@ -27,7 +27,7 @@ data:
     ORG_URL = "https://www.stellar.org"
     ORG_DESCRIPTION = "Stellar is an open network for storing and moving money."
     ORG_LOGO="https://assets-global.website-files.com/5deac75ecad2173c2ccccbc7/5dec8960504967fd31147f62_Stellar_lockup_black_RGB.svg"
-    ORG_SUPPORT_EMAIL="jamie@stellar.org"
+    ORG_SUPPORT_EMAIL="reece@stellar.org"
   anchor-config.yaml: |
     stellar:
       anchor:
@@ -51,7 +51,7 @@ data:
       # general
       app:
         stellarNetworkPassphrase: Test SDF Network ; September 2015
-        hostUrl: {{ .Values.reference_endpoint }}
+        hostUrl: https://www.stellaranchordemo.com
         languages: en
         horizonUrl: https://horizon-testnet.stellar.org
         assets: assets-test.json
