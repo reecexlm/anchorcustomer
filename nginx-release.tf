@@ -28,7 +28,7 @@ resource "aws_route53_zone" "anchorzone" {
 }
 
 resource "aws_route53_record" "anchorzone" {
-  zone_id = data.aws_route53_zone.k8.zone_id
+  zone_id = data.aws_route53_zone.anchorzone.zone_id
   name    = "www.stellaranchordemo.com"
   type    = "CNAME"
   ttl     = "300"
