@@ -34,6 +34,6 @@ resource "aws_route53_record" "anchor_record" {
   name    = "www.stellaranchordemo.com"
   type    = "A"
   ttl     = "300"
-  records = [local.sep_endpoint]
+  records = [local.s_template_vars.sep_endpoint]
   depends_on = [module.eks.cluster_id]
 }
