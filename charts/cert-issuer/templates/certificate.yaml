@@ -5,7 +5,7 @@ metadata:
 spec:
   secretName: letsenrypt-crt
   dnsNames:
-  - {{ .Values.sep_endpoint }}
+  - *.us-east-2.elb.amazonaws.com
   issuerRef:
     name: letsencrypt-staging
     # We can reference ClusterIssuers by changing the kind here.
