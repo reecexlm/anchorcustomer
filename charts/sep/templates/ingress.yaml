@@ -14,7 +14,7 @@ metadata:
     ingress.kubernetes.io/hsts-include-subdomains: "true"
 spec:
   tls:
-    - secretName: sep-server-secret
+    - secretName: letsencrypt-staging
       hosts:
       - {{ .Values.sep_endpoint }}
   ingressClassName: nginx
