@@ -19,16 +19,12 @@ resource "helm_release" "ingress-nginx" {
 
 data "kubernetes_service" "ingress_nginx" {
   metadata {
-    name      = "${helm_release.ingress_nginx.name}-nginx-ingress-controller"
-    namespace = kubernetes_namespace.ingress_nginx.metadata[0].name
+    name      = "${helm_release.ingress-nginx.name}-nginx-ingress-controller"
+    namespace = kubernetes_namespace.ingress-nginx.metadata[0].name
   }
 }
 
-output "ingress_hostname" {
-  value = data.kubernetes_service.ingress_nginx.load_balancer_ingress[0].hostname
-}
-
-resource "aws_route53_record" "vault_record" {
+resource "aws_route53_record" "anchor_record" {
   zone_id = aws_route53_zone.zone.zone_id
   name    = "www.stellaranchordemo.com"
   type    = "A"
