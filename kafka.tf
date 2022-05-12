@@ -52,7 +52,7 @@ resource "aws_msk_cluster" "anchorkafka" {
   }
 
   configuration_info {
-    revision = latest
+    revision = resource.aws_msk_configuration.anchor_kafka_config.latest_revision
     arn = resource.aws_msk_configuration.anchor_kafka_config.arn
   }
 }
