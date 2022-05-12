@@ -12,11 +12,9 @@ resource "helm_release" "ingress-nginx" {
     name  = "controller.admissionWebhooks.enabled"
     value = "false"
   }
-    values = [
-      templatefile(
-        file("${path.module}/nginx-values.yaml"),
-        local.s_template_vars)
-    ]
+
+  values = [templatefile("${path.module}/nginx-values.yaml",
+    local.s_template_vars)]
     depends_on = [module.eks.cluster_id]
 }
 
