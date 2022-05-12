@@ -27,7 +27,7 @@ resource "aws_route53_zone" "anchorzone" {
   name = "www.stellaranchordemo.com"
 }
 
-data "aws_routet53_zone" "anchorzonedata" {
+data "aws_route53_zone" "anchorzonedata" {
   name         = "www.stellaranchordemo.com."
   private_zone = false
 }
