@@ -1,4 +1,16 @@
 
+resource "helm_release" "cert-manager-crds" {
+  name             = "cert-manager-crds"
+  repository       = "https://charts.appscode.com/stable/"
+  chart            = "cert-manager-crds"
+  namespace        = "kube-system"
+  wait             = true
+  reset_values     = true
+  max_history      = 3
+  timeout          = 600
+}
+
+
 resource "helm_release" "cert-manager" {
   name             = "cert-manager"
   repository       = "https://charts.jetstack.io"
