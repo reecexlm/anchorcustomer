@@ -27,10 +27,15 @@ resource "aws_route53_zone" "anchorzone" {
   name = "www.stellaranchordemo.com"
 }
 
+data "aws_routet53_zone" "anchorzonedata" {
+  name         = "www.stellaranchordemo.com."
+  private_zone = false
+}
+
 resource "aws_route53_record" "anchor_record" {
-  zone_id = data.aws_route53_zone.anchorzone.zone_id
+  zone_id = data.aws_route53_zone.anchorzonedata.zone_id
   name    = "www.stellaranchordemo.com"
-  type    = "CNAME"
+  type    = "A"
   ttl     = "300"
   records = [data.kubernetes_ingress.example.status.0.load_balancer.0.ingress.0.hostname]
 }
