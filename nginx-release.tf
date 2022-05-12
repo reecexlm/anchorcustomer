@@ -25,7 +25,7 @@ data "kubernetes_service" "ingress_nginx" {
 }
 
 resource "aws_route53_record" "anchor_record" {
-  zone_id = aws_route53_zone.zone.zone_id
+  zone_id = aws_route53_zone.primary.zone_id
   name    = "www.stellaranchordemo.com"
   type    = "A"
 
