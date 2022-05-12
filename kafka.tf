@@ -1,5 +1,5 @@
 resource "aws_security_group" "sg" {
-  vpc_id = module.vpc.name
+  vpc_id = module.vpc.vpc_id
 }
 
 resource "aws_msk_cluster" "anchor_kafka_msk" {
