@@ -3,7 +3,7 @@ kind: Certificate
 metadata:
   name: anchor-crt
 spec:
-  secretName: letsenrypt
+  secretName: letsenrypt-crt
   dnsNames:
   - {{ .Values.sep_endpoint }}
   issuerRef:
