@@ -21,7 +21,7 @@ resource "helm_release" "ingress-nginx" {
 
 
 resource "aws_route53_zone" "anchorzone" {
-  name = "www.stellaranchordemo.com"
+  name = "stellaranchordemo.com"
 }
 
 data "aws_route53_zone" "anchorzonedata" {
