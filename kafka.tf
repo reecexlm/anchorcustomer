@@ -14,9 +14,9 @@ resource "aws_msk_cluster" "anchorkafka" {
     security_groups = [aws_security_group.sg.id]
   }
 
-  encryption_info {
-    encryption_at_rest_kms_key_arn = aws_kms_key.kms.arn
-  }
+  #encryption_info {
+  #  encryption_at_rest_kms_key_arn = aws_kms_key.kms.arn
+  #}
 
   open_monitoring {
     prometheus {
