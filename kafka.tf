@@ -50,4 +50,18 @@ resource "aws_msk_cluster" "anchorkafka" {
   tags = {
     foo = "bar"
   }
+
+  configuration_info {
+    arn = resource.aws_msk_configuration.anchor_kafka_config.arn
+  }
+}
+
+resource "aws_msk_configuration" "anchor_kafka_config" {
+  kafka_versions = ["2.1.0"]
+  name           = "anchor-demo"
+
+  server_properties = <<PROPERTIES
+auto.create.topics.enable = true
+delete.topic.enable = true
+PROPERTIES
 }
