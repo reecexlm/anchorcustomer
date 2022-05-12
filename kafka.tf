@@ -2,7 +2,7 @@ resource "aws_security_group" "sg" {
   vpc_id = module.vpc.name
 }
 
-resource "aws_msk_cluster" "anchorkafka" {
+resource "aws_msk_cluster" "anchor_kafka_msk" {
   cluster_name           = "anchorkafka"
   kafka_version          = "2.4.1"
   number_of_broker_nodes = 3
@@ -65,4 +65,15 @@ resource "aws_msk_configuration" "anchor_kafka_config" {
 auto.create.topics.enable = true
 delete.topic.enable = true
 PROPERTIES
+}
+
+data "aws_msk_cluster" "anchor_msk" {
+  cluster_name = resource.aws_msk_cluster.anchor_kafka_msk.name
+}
+
+locals {
+  kafka_vars = {
+    bootstrap_brokers = data.aws_msk_cluster.anchor_msk.bootstrap_brokers
+    
+  } 
 }

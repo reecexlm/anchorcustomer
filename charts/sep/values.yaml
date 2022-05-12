@@ -1,4 +1,5 @@
 fullName: anchor-ref-config
+bootstrap_server: ${bootstrap_server}
 jwtSecretKey:
 signingSeed: 
 stellar:
