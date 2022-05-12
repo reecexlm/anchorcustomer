@@ -14,7 +14,7 @@ metadata:
     ingress.kubernetes.io/hsts-include-subdomains: "true"
 spec:
   tls:
-    - secretName: anchor-platform-sep-server-cert
+    - secretName: sep-server-secret
       hosts:
       - {{ .Values.sep_endpoint }}
   ingressClassName: nginx
