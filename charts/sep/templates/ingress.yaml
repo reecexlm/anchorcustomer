@@ -4,7 +4,7 @@ metadata:
   name: {{ .Release.Name }}-ingress
   namespace: anchor-platform
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-dev"
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
     kubernetes.io/ingress.class: "nginx"
     ingress.kubernetes.io/ssl-redirect: "true"
     ingress.kubernetes.io/browser-xss-filter: "true"
