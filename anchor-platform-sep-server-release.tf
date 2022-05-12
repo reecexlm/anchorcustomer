@@ -3,7 +3,7 @@ data "kubernetes_ingress" "sep" {
     name = "sep-server-ingress"
     namespace = "anchor-platform"
   }
-  depends_on = [helm.release.sep] 
+  depends_on = [helm.release.sep.status] 
 }
 
 data "kubernetes_ingress" "reference" {
@@ -11,7 +11,7 @@ data "kubernetes_ingress" "reference" {
     name = "reference-server-ingress"
     namespace = "anchor-platform"
   }
-  depends_on = [helm.release.reference]
+  depends_on = [helm.release.reference.status]
 }
 locals {
   sep_template_vars = {
