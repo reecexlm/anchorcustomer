@@ -4,7 +4,7 @@ resource "aws_security_group" "sg" {
 
 resource "aws_msk_cluster" "anchor_kafka_msk" {
   cluster_name           = "anchorkafka"
-  kafka_version          = "2.4.1"
+  kafka_version          = "2.8.0"
   number_of_broker_nodes = 3
 
   broker_node_group_info {
