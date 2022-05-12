@@ -3,9 +3,8 @@ kind: Certificate
 metadata:
   name: anchor-crt
 spec:
-  secretName: letsenrypt-crt
   dnsNames:
-  - "*.us-east-2.elb.amazonaws.com"
+  - www.stellaranchordemo.com
   issuerRef:
     name: letsencrypt-staging
     # We can reference ClusterIssuers by changing the kind here.

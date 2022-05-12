@@ -16,7 +16,7 @@ spec:
   tls:
     - secretName: letsencrypt-staging
       hosts:
-      - {{ .Values.sep_endpoint }}
+      - www.stellaranchordemo.com
   ingressClassName: nginx
   rules:
   - http:

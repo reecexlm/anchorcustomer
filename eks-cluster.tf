@@ -360,16 +360,11 @@ resource "aws_iam_role_policy_attachment" "additional" {
    role = each.value.iam_role_name
 }
 
-#data "kubernetes_ingress" "reference" {
-#  metadata {
-#    name = "reference-server-ingress"
-#  }
-#}
+resource "aws_route53_record" "anchordemo" {
+  zone_id = aws_route53_zone.primary.zone_id
+  name    = "www.stellaranchordemo.com"
+  type    = "A"
+  ttl     = "300"
+  records = [aws_eip.lb.public_ip]
+}
 
-#resource "aws_route53_record" "reference" {
-#  zone_id = data.aws_route53_zone.k8.zone_id
-#  name    = "reference-server"
-#  type    = "CNAME"
-#  ttl     = "300"
-#  records = [data.kubernetes_ingress.reference.status.0.load_balancer.0.ingress.0.hostname]
-#}
