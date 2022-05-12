@@ -17,21 +17,16 @@ resource "helm_release" "ingress-nginx" {
   ]
 }
 
-data "kubernetes_service" "ingress_nginx" {
+data "kubernetes_ingress" "example" {
   metadata {
-    name      = "${helm_release.ingress-nginx.name}-nginx-ingress-controller"
-    namespace = kubernetes_namespace.ingress-nginx.metadata[0].name
+    name = "ingress-nginx"
   }
 }
 
-resource "aws_route53_record" "anchor_record" {
-  zone_id = aws_route53_zone.primary.zone_id
+resource "aws_route53_record" "example" {
+  zone_id = data.aws_route53_zone.k8.zone_id
   name    = "www.stellaranchordemo.com"
-  type    = "A"
-
-  alias {
-    name                   = data.kubernetes_service.ingress_nginx.load_balancer_ingress[0].hostname
-    zone_id                = data.kubernetes_service.ingress_nginx.load_balancer_ingress[0].zone_id
-    evaluate_target_health = true
-  }
+  type    = "CNAME"
+  ttl     = "300"
+  records = [data.kubernetes_ingress.example.status.0.load_balancer.0.ingress.0.hostname]
 }
