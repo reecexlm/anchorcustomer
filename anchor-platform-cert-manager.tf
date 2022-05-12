@@ -28,7 +28,6 @@ resource "helm_release" "cert-issuer" {
   name             = "cert-issuer"
   chart            = "./charts/cert-issuer"
   namespace        = "cert-manager"
-  secretName       = "secret"
   create_namespace = true
   wait             = true
   reset_values     = true
