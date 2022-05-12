@@ -65,7 +65,7 @@ data:
       # sep-10
       sep10:
         enabled: true
-        homeDomain: localhost:8080
+        homeDomain: www.stellaranchordemo.com
         clientAttributionRequired: false
         clientAttributionAllowList: lobstr.co,preview.lobstr.co # use this if we want to white list
         # clientAttributionDenyList: # use this if we want to black list.
