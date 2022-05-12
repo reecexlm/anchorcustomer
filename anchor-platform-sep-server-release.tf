@@ -3,7 +3,7 @@ data "kubernetes_ingress" "sep" {
     name = "sep-server-ingress"
     namespace = "anchor-platform"
   }
-  depends_on = [module.eks.cluster_id] 
+  depends_on = [helm.release.sep] 
 }
 
 data "kubernetes_ingress" "reference" {
@@ -11,7 +11,7 @@ data "kubernetes_ingress" "reference" {
     name = "reference-server-ingress"
     namespace = "anchor-platform"
   }
-  depends_on = [module.eks.cluster_id]
+  depends_on = [helm.release.reference]
 }
 locals {
   sep_template_vars = {
@@ -33,6 +33,6 @@ resource "helm_release" "sep" {
     #values = []#"${path.module}/anchor-platform-sep-server-values.yaml"]
     values = [templatefile("${path.module}/anchor-platform-sep-server-values.yaml",
     local.sep_template_vars)]
-    depends_on = [resource.helm_release.reference]
+    depends_on = [module.eks.cluster_id]
 }
 
