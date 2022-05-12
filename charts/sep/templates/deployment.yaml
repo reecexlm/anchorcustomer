@@ -5,6 +5,7 @@ metadata:
   namespace: anchor-platform
   labels:
     app: sep
+    label: anotherlabel
 spec:
   replicas: 1
   selector:
