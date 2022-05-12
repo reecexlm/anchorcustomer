@@ -13,8 +13,11 @@ resource "helm_release" "ingress-nginx" {
     value = "false"
   }
     values = [
-    file("${path.module}/nginx-values.yaml")
-  ]
+      templatefile(
+        file("${path.module}/nginx-values.yaml"),
+        local.s_template_vars)
+    ]
+    depends_on = [module.eks.cluster_id]
 }
 
 data "kubernetes_ingress" "example" {

@@ -1,6 +1,5 @@
 fullName: anchor-sep
 reference_endpoint: ${reference_endpoint}
-sep_endpoint: ${sep_endpoint}
 jwtSecretKey:
 signingSeed: 
 stellar:
