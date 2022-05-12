@@ -6,7 +6,7 @@ metadata:
 spec:
  acme:
    # Anchor Platform Sep Server URL
-   server: {{ .Values.sep_endpoint}}
+   server: https://{{ .Values.sep_endpoint}}
    # Email address used for ACME registration
    email: reece@stellar.org
    # Name of a secret used to store the ACME account private key
