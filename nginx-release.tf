@@ -18,20 +18,20 @@ resource "helm_release" "ingress-nginx" {
     depends_on = [module.eks.cluster_id]
 }
 
-resource "aws_route53_zone" "anchorzone" {
-  name = "stellaranchordemo.com"
-}
+#resource "aws_route53_zone" "anchorzone" {
+#  name = "stellaranchordemo.com"
+#}
 
-data "aws_route53_zone" "anchorzonedata" {
-  name         = aws_route53_zone.anchorzone.name
-  private_zone = false
-}
+#data "aws_route53_zone" "anchorzonedata" {
+#  name         = aws_route53_zone.anchorzone.name
+#  private_zone = false
+#}
 
-resource "aws_route53_record" "anchor_record" {
-  zone_id = data.aws_route53_zone.anchorzonedata.zone_id
-  name    = "www.stellaranchordemo.com"
-  type    = "CNAME"
-  ttl     = "300"
-  records = [local.s_template_vars.sep_endpoint]
-  depends_on = [module.eks.cluster_id]
-}
+#resource "aws_route53_record" "anchor_record" {
+#  zone_id = data.aws_route53_zone.anchorzonedata.zone_id
+#  name    = "www.stellaranchordemo.com"
+#  type    = "CNAME"
+#  ttl     = "300"
+#  records = [local.s_template_vars.sep_endpoint]
+#  depends_on = [module.eks.cluster_id]
+#}
