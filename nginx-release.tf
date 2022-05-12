@@ -18,13 +18,7 @@ resource "helm_release" "ingress-nginx" {
     depends_on = [module.eks.cluster_id]
 }
 
-data "kubernetes_ingress" "example" {
-  metadata {
-    name = "ingress-nginx"
-    namespace = "ingress-nginx"
-  }
-  depends_on = [module.eks.cluster_id]
-}
+
 
 resource "aws_route53_zone" "anchorzone" {
   name = "www.stellaranchordemo.com"
@@ -40,6 +34,6 @@ resource "aws_route53_record" "anchor_record" {
   name    = "www.stellaranchordemo.com"
   type    = "A"
   ttl     = "300"
-  records = [data.kubernetes_ingress.example.status.0.load_balancer.0.ingress.0.hostname]
+  records = [local.sep_endpoint]
   depends_on = [module.eks.cluster_id]
 }
