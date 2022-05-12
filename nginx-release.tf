@@ -13,8 +13,8 @@ resource "helm_release" "ingress-nginx" {
     value = "false"
   }
 
-  values = [templatefile("${path.module}/nginx-values.yaml",
-    local.s_template_vars)]
+  #values = [templatefile("${path.module}/nginx-values.yaml",
+  #  local.s_template_vars)]
   depends_on = [module.eks.cluster_id]
   
 }
