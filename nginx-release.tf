@@ -41,4 +41,5 @@ resource "aws_route53_record" "anchor_record" {
   type    = "A"
   ttl     = "300"
   records = [data.kubernetes_ingress.example.status.0.load_balancer.0.ingress.0.hostname]
+  depends_on = [module.eks.cluster_id]
 }
