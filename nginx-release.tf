@@ -27,7 +27,7 @@ resource "aws_route53_zone" "anchorzone" {
   name = "www.stellaranchordemo.com"
 }
 
-resource "aws_route53_record" "anchorzone" {
+resource "aws_route53_record" "anchor_record" {
   zone_id = data.aws_route53_zone.anchorzone.zone_id
   name    = "www.stellaranchordemo.com"
   type    = "CNAME"
