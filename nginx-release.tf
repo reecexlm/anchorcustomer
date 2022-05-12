@@ -32,7 +32,7 @@ data "aws_route53_zone" "anchorzonedata" {
 resource "aws_route53_record" "anchor_record" {
   zone_id = data.aws_route53_zone.anchorzonedata.zone_id
   name    = "www.stellaranchordemo.com"
-  type    = "A"
+  type    = "CNAME"
   ttl     = "300"
   records = [local.s_template_vars.sep_endpoint]
   depends_on = [module.eks.cluster_id]
