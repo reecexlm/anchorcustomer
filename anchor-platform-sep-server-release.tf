@@ -14,7 +14,7 @@ data "kubernetes_ingress" "reference" {
   depends_on = [resource.helm_release.reference.status]
 }
 locals {
-  template_vars = {
+  s_template_vars = {
     sep_endpoint = data.kubernetes_ingress.sep.status.0.load_balancer.0.ingress.0.hostname
   }
   sep_template_vars = {
@@ -34,7 +34,7 @@ resource "helm_release" "sep" {
 
     #values = []#"${path.module}/anchor-platform-sep-server-values.yaml"]
     values = [templatefile("${path.module}/anchor-platform-sep-server-values.yaml",
-    local.template_vars)]
+    local.s_template_vars)]
     depends_on = [module.eks.cluster_id]
 }
 
