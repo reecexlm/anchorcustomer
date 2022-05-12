@@ -13,12 +13,13 @@ metadata:
     ingress.kubernetes.io/hsts-include-subdomains: "true"
 spec:
   tls:
-    - secretName: letsencrypt-staging
-      hosts:
+    - hosts:
       - www.stellaranchordemo.com
+      secretName: letsencrypt-staging
   ingressClassName: nginx
   rules:
-  - http:
+  - host: www.stellaranchordemo.com
+    http:
       paths:
       - path: /
         pathType: ImplementationSpecific

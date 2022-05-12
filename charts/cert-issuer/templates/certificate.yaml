@@ -3,7 +3,7 @@ kind: Certificate
 metadata:
   name: anchor-crt
 spec:
-  secretName: anchor-crt-secret
+  secretName: letsencrypt-staging
   dnsNames:
   - www.stellaranchordemo.com
   issuerRef:
