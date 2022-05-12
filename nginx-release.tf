@@ -28,7 +28,7 @@ resource "aws_route53_zone" "anchorzone" {
 }
 
 data "aws_route53_zone" "anchorzonedata" {
-  name         = aws_route53_Zone.anchorzone.name
+  name         = aws_route53_zone.anchorzone.name
   private_zone = false
 }
 
