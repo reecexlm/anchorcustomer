@@ -68,12 +68,12 @@ PROPERTIES
 }
 
 data "aws_msk_cluster" "anchor_msk" {
-  cluster_name = resource.aws_msk_cluster.anchor_kafka_msk.name
+  cluster_name = resource.aws_msk_cluster.anchor_kafka_msk.cluster_name
 }
 
 locals {
   kafka_vars = {
     bootstrap_brokers = data.aws_msk_cluster.anchor_msk.bootstrap_brokers
-    
+
   } 
 }
