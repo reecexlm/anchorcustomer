@@ -20,7 +20,9 @@ resource "helm_release" "ingress-nginx" {
 data "kubernetes_ingress" "example" {
   metadata {
     name = "ingress-nginx"
+    namespace = "ingress-nginx"
   }
+  depends_on = [module.eks.cluster_id]
 }
 
 resource "aws_route53_zone" "anchorzone" {
