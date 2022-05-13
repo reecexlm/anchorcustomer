@@ -20,7 +20,7 @@ resource "aws_msk_cluster" "anchor_kafka_msk" {
   encryption_info {
  
     encryption_in_transit {
-      client_broker = "PLAINTEXT"
+      client_broker = "PLAINTEXTSASL"
     }
   }
 
