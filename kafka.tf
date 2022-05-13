@@ -1,5 +1,11 @@
 resource "aws_security_group" "sg" {
   vpc_id = module.vpc.vpc_id
+   ingress {
+    description      = "kafka broker"
+    from_port        = 9092
+    to_port          = 9092
+    protocol         = "tcp"
+  }
 }
 
 resource "aws_msk_cluster" "anchor_kafka_msk" {
