@@ -22,6 +22,7 @@ resource "aws_msk_cluster" "anchor_kafka_msk" {
     encryption_in_transit {
       client_broker = "PLAINTEXT"
     }
+  }
 
   open_monitoring {
     prometheus {
