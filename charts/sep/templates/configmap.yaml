@@ -138,7 +138,7 @@ data:
         # If useSingleQueue, all events are published to a single queue
         #   (specified in eventTypeToQueue.all)
         # eventTypeToQueue - a map of the event type to the queue name messages are published to
-        bootstrapServer: { .Values.bootstrap_server}
+        bootstrapServer: {{ .Values.bootstrap_server }}
         useSingleQueue: false
         eventTypeToQueue:
           all: ap_event_single_queue
