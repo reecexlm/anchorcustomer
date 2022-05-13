@@ -67,9 +67,9 @@ delete.topic.enable = true
 PROPERTIES
 }
 
-data "aws_msk_cluster" "anchor_msk" {
-  cluster_name = resource.aws_msk_cluster.anchor_kafka_msk.cluster_name
-}
+#data "aws_msk_cluster" "anchor_msk" {
+#  cluster_name = resource.aws_msk_cluster.anchor_kafka_msk.cluster_name
+#}
 
 
 

@@ -33,7 +33,6 @@ resource "helm_release" "sep" {
   max_history      = 3
   timeout          = 600
 
-    #values = []#"${path.module}/anchor-platform-sep-server-values.yaml"]
     values = [templatefile("${path.module}/anchor-platform-sep-server-values.yaml",
     local.sep_template_vars)]
     depends_on = [resource.helm_release.ingress-nginx]
