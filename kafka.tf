@@ -17,6 +17,11 @@ resource "aws_msk_cluster" "anchor_kafka_msk" {
   #encryption_info {
   #  encryption_at_rest_kms_key_arn = aws_kms_key.kms.arn
   #}
+  encryption_info {
+    # ... other configuration ...
+    encryption_in_transit {
+      client_broker = "PLAINTEXT"
+    }
 
   open_monitoring {
     prometheus {
@@ -67,9 +72,9 @@ delete.topic.enable = true
 PROPERTIES
 }
 
-#data "aws_msk_cluster" "anchor_msk" {
-#  cluster_name = resource.aws_msk_cluster.anchor_kafka_msk.cluster_name
-#}
+data "aws_msk_cluster" "  " {
+  cluster_name = resource.aws_msk_cluster.anchor_kafka_msk.cluster_name
+}
 
 
 
