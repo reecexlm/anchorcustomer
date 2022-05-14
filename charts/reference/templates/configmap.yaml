@@ -15,7 +15,7 @@ data:
     #
     anchor.settings:
       version: 0.0.1
-      platformApiEndpoint: http://localhost:8080
+      platformApiEndpoint: http://www.stellaranchordemo:8080
 
     event:
       # The listener type. values: [kafka, sqs, amqp]
@@ -25,7 +25,7 @@ data:
       listenerType: kafka
 
     kafka.listener:
-      bootstrapServer: localhost:29092
+      bootstrapServer: {{ .Values.bootstrap_broker }}
       useSingleQueue: false
       eventTypeToQueue:
         all: ap_event_single_queue
