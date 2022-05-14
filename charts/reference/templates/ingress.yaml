@@ -12,7 +12,8 @@ metadata:
     dap: pap
 spec:
   rules:
-    - http:
+    - host: references.stellaranchordemo.com
+      http:
         paths:
           - path: /
             pathType: ImplementationSpecific
