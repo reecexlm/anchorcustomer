@@ -1,4 +1,5 @@
 fullName: anchor-reference
+bootstrap_broker: ${bootstrap_broker}
 jwtSecretKey:
 signingSeed: 
 stellar:
