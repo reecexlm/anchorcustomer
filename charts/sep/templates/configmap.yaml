@@ -51,7 +51,7 @@ data:
       sep12:
         enabled: true
         #customerIntegrationEndpoint: http://references.stellaranchordemo.com
-        customerIntegrationEndpoint: http://10.0.1.185:8081
+        customerIntegrationEndpoint: http://10.0.1.23:8081
     
       # sep-24
       sep24:
