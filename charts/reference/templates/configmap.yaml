@@ -15,7 +15,7 @@ data:
     #
     anchor.settings:
       version: 0.0.1
-      platformApiEndpoint: http://www.stellaranchordemo:8080
+      platformApiEndpoint: https://www.stellaranchordemo
 
     event:
       # The listener type. values: [kafka, sqs, amqp]
